@@ -5,31 +5,26 @@ import java.util.*
 fun main() {
 
     val meloman = true
-    val scanner = Scanner(System.`in`)
-
-    while (true) {
-        val purchaseAmount = scanner.nextDouble()
-        if (purchaseAmount in 1000.00..10_000.00) {
-            println(purchaseAmount - 100)
-        } else if (purchaseAmount > 10_001) {
-            println(purchaseAmount - ((purchaseAmount * 5) / 100))
+    val amount = 20_000
+    val lastPurchase = 20_000.00
+    val discount = when(lastPurchase) {
+        in 0.00..1000.00 -> if (meloman) {
+            amount - amount * 0.01
         } else {
-            println(purchaseAmount)
+            amount
         }
-        break
-    }
-    while (meloman) {
-        val purchaseAmount = scanner.nextDouble()
-        if (purchaseAmount in 1000.00..10_000.00) {
-            println((purchaseAmount - 100) - (purchaseAmount - 100)/100)
-        } else if (purchaseAmount > 10_001) {
-            println((purchaseAmount - ((purchaseAmount * 5) / 100))
-                    - ((purchaseAmount - ((purchaseAmount * 5) / 100)) / 100))
+        in 1001.00..10000.00 -> if (meloman) {
+            (amount - 100.00) - (amount - 100.00) * 0.01
         } else {
-            println(purchaseAmount - (purchaseAmount / 100))
+            amount - 100.00
         }
-        break
+        else -> if (meloman) {
+            (amount - amount * 0.05) - (amount * 0.95) * 0.01
+        } else {
+            amount - amount * 0.05
+        }
     }
+    println(discount)
 
 }
 
