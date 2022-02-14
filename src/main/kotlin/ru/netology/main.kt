@@ -5,26 +5,27 @@ import java.util.*
 fun main() {
 
     val meloman = true
-    val amount = 20_000
-    val lastPurchase = 20_000.00
+    val amount = 5000
+    val lastPurchase = 5000
+    val commissionMeloman = amount * 0.01
     val discount = when(lastPurchase) {
-        in 0.00..1000.00 -> if (meloman) {
-            amount - amount * 0.01
+        in 0..1000 -> if (meloman) {
+            amount - commissionMeloman
         } else {
             amount
         }
-        in 1001.00..10000.00 -> if (meloman) {
-            (amount - 100.00) - (amount - 100.00) * 0.01
+        in 1001..10000 -> if (meloman) {
+            amount - 100 - commissionMeloman - 1
         } else {
-            amount - 100.00
+            amount - 100
         }
         else -> if (meloman) {
-            (amount - amount * 0.05) - (amount * 0.95) * 0.01
+            amount * 0.95 - commissionMeloman * 0.95
         } else {
             amount - amount * 0.05
         }
     }
-    println(discount)
+    println(discount.toInt())
 
 }
 
