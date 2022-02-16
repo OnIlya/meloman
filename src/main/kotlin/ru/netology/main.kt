@@ -1,12 +1,10 @@
 package ru.netology
 
-import java.util.*
-
 fun main() {
 
     val meloman = true
-    val amount = 5000
-    val lastPurchase = 5000
+    val amount = 3000
+    val lastPurchase = 500
     val commissionMeloman = amount * 0.01
     val discount = when(lastPurchase) {
         in 0..1000 -> if (meloman) {
@@ -15,7 +13,7 @@ fun main() {
             amount
         }
         in 1001..10000 -> if (meloman) {
-            amount - 100 - commissionMeloman - 1
+            (amount - 100) - (commissionMeloman - 1)
         } else {
             amount - 100
         }
