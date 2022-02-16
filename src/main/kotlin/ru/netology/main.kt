@@ -3,8 +3,8 @@ package ru.netology
 fun main() {
 
     val meloman = true
-    val amount = 3000
-    val lastPurchase = 500
+    val amount = 5000
+    val lastPurchase = 5000
     val commissionMeloman = amount * 0.01
     val discount = when(lastPurchase) {
         in 0..1000 -> if (meloman) {
