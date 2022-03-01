@@ -3,29 +3,26 @@ package ru.netology
 fun main() {
 
     val meloman = true
-    val amount = 5000
+    val amount = 5479
     val lastPurchase = 5000
-    val commissionMeloman = amount * 0.01
-    val discount = when(lastPurchase) {
-        in 0..1000 -> if (meloman) {
-            amount - commissionMeloman
-        } else {
-            amount
-        }
-        in 1001..10000 -> if (meloman) {
-            (amount - 100) - (commissionMeloman - 1)
-        } else {
-            amount - 100
-        }
-        else -> if (meloman) {
-            amount * 0.95 - commissionMeloman * 0.95
-        } else {
-            amount - amount * 0.05
-        }
+    val discountedAmount = when {
+        lastPurchase > 10_000 -> amount * 0.95
+        lastPurchase > 1_000 -> amount - 100
+        else -> amount
     }
-    println(discount.toInt())
+    val melomanAmount = when(meloman) {
+        true -> discountedAmount.toDouble() * 0.99
+        else -> discountedAmount
+    }
+    val convertRub = melomanAmount.toDouble() * 100
+
+    println("${melomanAmount.toInt()} руб ${convertRub.toInt() % 100} коп")
 
 }
+
+
+
+
 
 
 
